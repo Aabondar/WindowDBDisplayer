@@ -1,0 +1,65 @@
+﻿<Window x:Class="TestTaskWindowsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestTaskWindowsApp"
+        mc:Ignorable="d"
+        Title="Car parts table" Height="500" Width="900">
+
+    <Window.Resources>
+        <DataTemplate x:Key="venCodeTemplate">
+            <Border BorderBrush="#FF000000" BorderThickness="2,0,0,0" Margin="-10,-2,-6,-2">
+                <StackPanel Margin="6,2,6,2">
+                    <TextBlock Text="{Binding Path=venCode}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="partNameTemplate">
+            <Border BorderBrush="#FF000000" BorderThickness="1,0,0,0" Margin="-6,-2,-6,-2">
+                <StackPanel Margin="6,2,6,2">
+                    <TextBlock Text="{Binding Path=partName}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="linkedNumberTemplate">
+            <Border BorderBrush="#FF000000" BorderThickness="1,0,0,0" Margin="-6,-2,-6,-2">
+                <StackPanel Margin="6,2,6,2">
+                    <TextBlock Text="{Binding Path=linkedNumber}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <Style x:Key="MyItemContainerStyle" TargetType="{x:Type ListViewItem}">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Label Width="250" Content="Исходный код" Margin="10,10,632,422" FontSize="16"/>
+        <Label Width="350" Content="Название запчасти" Margin="265,10,332,422" FontSize="16"/>
+        <Label Content="Связанные номера" Margin="615,10,9,422" FontSize="16"/>
+        <ListView ItemsSource="{Binding carPartsCollection}" HorizontalAlignment="Left" Height="389" Margin="10,70,0,0" VerticalAlignment="Top" Width="872" FontSize="14" BorderBrush="Black">
+            <ListView.View>
+                <GridView>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style>
+                            <Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridViewColumn CellTemplate="{DynamicResource venCodeTemplate}" Width="250"/>
+                    <GridViewColumn CellTemplate="{DynamicResource partNameTemplate}" Width="350"/>
+                    <GridViewColumn CellTemplate="{DynamicResource linkedNumberTemplate}" Width="200"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="VencodeFilter" HorizontalAlignment="Left" Height="23" Margin="10,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" FontSize="14" TextChanged="VencodeFilter_TextChanged" GotFocus="VencodeFilter_GotFocus" Text="фильтр по коду" BorderBrush="Black" LostFocus="VencodeFilter_LostFocus" Foreground="LightSlateGray"/>
+        <TextBox x:Name="NameFilter" HorizontalAlignment="Left" Height="23" Margin="265,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" FontSize="14" TextChanged="NameFilter_TextChanged" GotFocus="NameFilter_GotFocus" Foreground="LightSlateGray" Text="фильтр по вхождению в текст имени" BorderBrush="Black" LostFocus="NameFilter_LostFocus"/>
+        <TextBox x:Name="LinkedNumberFilter" HorizontalAlignment="Left" Height="23" Margin="615,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267" FontSize="14" TextChanged="LinkedNumberFilter_TextChanged" GotFocus="LinkedNumberFilter_GotFocus" Foreground="LightSlateGray" Text="фильтр по коду" BorderBrush="Black" LostFocus="LinkedNumberFilter_LostFocus"/>
+
+    </Grid>
+</Window>
+    
+    
+
